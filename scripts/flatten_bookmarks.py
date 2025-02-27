@@ -1,4 +1,5 @@
 import re
+import sys
 
 def flatten_bookmarks(file_path, levels):
     with open(file_path, 'r', encoding='utf-8') as file:
@@ -25,6 +26,10 @@ def flatten_bookmarks(file_path, levels):
     print(f"Bookmarks flattened to {levels} levels and saved to 'flattened_bookmarks.html'")
 
 if __name__ == "__main__":
-    input_file = input("Enter the path to your bookmarks HTML file: ")
-    levels = int(input("Enter the number of directory levels to flatten to: "))
+    if len(sys.argv) != 3:
+        print("Usage: python flatten_bookmarks.py <file_path> <levels>")
+        sys.exit(1)
+    
+    input_file = sys.argv[1]
+    levels = int(sys.argv[2])
     flatten_bookmarks(input_file, levels)
