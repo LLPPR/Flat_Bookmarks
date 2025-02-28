@@ -6,8 +6,8 @@ def extract_links(content, levels, current_level=0):
         return []
 
     bookmarks = []
-    link_pattern = re.compile(r'<DT><A HREF="[^"]+">[^<]+</A>')
-    nested_pattern = re.compile(r'<DL><p>(.*?)</DL><p>', re.DOTALL)
+    link_pattern = re.compile(r'<DT><A HREF="[^"]+" ADD_DATE="\d+">[^<]+<\/A>')
+    nested_pattern = re.compile(r'DL><p>\s*<DT><H3 ADD_DATE="\d+" LAST_MODIFIED="\d+">[^<]+<\/H3>\s*<DL><p>\s*<DT><A HREF="[^"]+" ADD_DATE="\d+">[^<]+<\/A>\s*<\/DL><p>', re.DOTALL)
 
     for match in link_pattern.finditer(content):
         bookmarks.append(match.group())
