@@ -12,7 +12,7 @@ The `flatten_bookmarks.py` script extracts all bookmarks from nested folders in 
 
 1. Clone the repository:
    ```sh
-   git clone https://github.com/LPX1138/bookmarks-management.git
+   git clone https://github.com/LLPPR/bookmarks-management.git
    cd bookmarks-management
    ```
 
