@@ -1,6 +1,10 @@
 import re
 import sys
 
+def is_valid_link(link):
+    required_elements = ["http", "www", ".com"]
+    return all(element in link for element in required_elements)
+
 def extract_links(content, levels, current_level=0):
     if current_level > levels:
         return []
@@ -10,7 +14,9 @@ def extract_links(content, levels, current_level=0):
     nested_pattern = re.compile(r'<DT><H3 ADD_DATE="\d+"(?: LAST_MODIFIED="\d+")?(?: PERSONAL_TOOLBAR_FOLDER="true")?>([^<]+)<\/H3>\s*<DL><p>(.*?)<\/DL><p>', re.DOTALL)
 
     for match in link_pattern.finditer(content):
-        bookmarks.append(match.group())
+        link = match.group()
+        if is_valid_link(link):
+            bookmarks.append(link)
 
     for match in nested_pattern.finditer(content):
         section_title = match.group(1)
